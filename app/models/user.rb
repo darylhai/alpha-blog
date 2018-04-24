@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :articles
+  has_many :articles, dependent: :destroy # destroys all articles created by this user when the user account is deleted
   before_save { self.email = email.downcase }
   validates :username, presence: true, 
             uniqueness: { case_sensitive: false }, 
